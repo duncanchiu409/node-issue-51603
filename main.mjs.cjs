@@ -1,1 +1,2 @@
-throw Error("abc")
+// ./main.mjs.cjs
+throw Error('abc');
