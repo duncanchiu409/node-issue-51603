@@ -1,0 +1,24 @@
+name: Nodejs CI
+
+on: push
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy: 
+      matrix:
+        os-version: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18.12.0, lts/*, 20.10.0, current]
+    env:
+      CI: true
+    steps:
+      - name: Checkout ${{ github.sha }}
+        uses: actions/checkout@v3
+      - name: ${matrix.os-version} ${matrix.node-version}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/
+      - name: Run Node
+        run: node main.mjs
