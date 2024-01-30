@@ -4,12 +4,12 @@ on: push
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os-version }}
     timeout-minutes: 10
     strategy: 
       matrix:
-        os-version: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [18.12.0, lts/*, 20.10.0, current]
+        os-version: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        node-version: ['18.12.0', 'lts/*', '20.10.0', 'current']
     env:
       CI: true
     steps:
